@@ -1,2 +1,2 @@
-# hr_bot_factory
+# hr bot factory
 Technical test
