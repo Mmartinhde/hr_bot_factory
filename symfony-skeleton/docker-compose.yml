@@ -7,7 +7,7 @@ services:
             - ./db-data:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=rootpass
-            - MYSQL_DATABASE=my_database
+            - MYSQL_DATABASE=demo
             - MYSQL_USER=user
             - MYSQL_PASSWORD=pass
         ports:
