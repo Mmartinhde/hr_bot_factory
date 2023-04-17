@@ -95,8 +95,11 @@ class ClientAuthenticator extends AbstractFormLoginAuthenticator implements Pass
             return new RedirectResponse($targetPath);
         }
 
+        //redirect to list User
+        return new RedirectResponse($this->urlGenerator->generate('users_list'));
+
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);        
     }
 
     protected function getLoginUrl()

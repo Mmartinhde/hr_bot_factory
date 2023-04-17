@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Usuario{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('styles/styles.css')}}"/>
+{% endblock %} 
+
+{% block body %}
+
+
+<div class="form">
+
+    <div>
+        <h3>Editar usuario</h3>
+    </div>
+
+    <div>
+        {{form_start(editUserForm)}}
+
+        {{form_end(editUserForm)}}       
+    </div>
+   
+</div>
+
+{% endblock %}

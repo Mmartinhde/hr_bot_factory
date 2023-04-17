@@ -47,6 +47,16 @@ class UserRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByClient($value)
+    {
+//         $query = $repository->createQueryBuilder('u')
+//     ->innerJoin('p.client', 'c')
+//     ->where('p.client = c.id')
+//     ->getQuery();
+
+        // $users = $query->getResult();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

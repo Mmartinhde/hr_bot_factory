@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuarios{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('styles/styles.css')}}"/>
+{% endblock %} 
+{% block body %}
+
+<div class="mb-3 button-logout">
+  {{ app.user.clientName }} | <a href="{{ path('app_logout') }}"> Cerrar Sesión</a>
+</div>
+
+<div class="box">
+ 
+   <div>
+    <h3>Listado de Usuarios</h3>
+   </div>
+
+   <div class="box-button_add">
+    <a href="{{ path('add_user') }}">
+      <button class="button-add">Añadir Usuario</button>
+    </a>
+   </div>
+
+   <div class="box-table">
+        <table class="table">
+          <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>        
+            <th>Población</th>        
+            <th>Categoría</th> 
+            <th>Edad</th> 
+            <th>Activo</th> 
+            <th>Fecha Creación</th> 
+            <th>Fecha Modificación</th>  
+            <th></th>
+            <th></th>
+           </tr>
+ 
+           {% for user in user %}
+          <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.town }}</td>
+            <td>{{ user.category }}</td>
+            <td>{{ user.age }}</td>
+              {% if user.active == true  %}
+                <td>Sí</td>
+              {% else  %}
+              <td>No</td>
+              {% endif %}
+            <td>{{ user.dateCreation|date("d/m/Y") }}</td>
+            <td>{{ user.dateUPdate|date("d/m/Y") }}</td>
+
+            <td><a href="{{ path('edit_user', {'id': user.id}) }}"><button class="button-edit">Editar</button></a></td>
+            <td><a href="{{ path('delete_user', {'id': user.id}) }}"><button class="button-delete">Eliminar</button></a></td>          
+
+           {% endfor %}
+ 
+        </table>
+ 
+     </div>
+
+
+{% endblock %}

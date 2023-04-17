@@ -30,8 +30,8 @@ class ClientFixture extends Fixture
             $password = $this->encoder->encodePassword($client, 'pass_1234');
             $client->setPassword($password);
             $client->setUsername('client'.''.$letter++);
-            $client->setRoles([]);
-            $client->setClientName('Cliente' .' ' . $letter++);
+            $client->setRoles(['ROLE_USER']);
+            $client->setClientName('Cliente' . ' ' . $letter++);
 
             $manager->persist($client);
             $manager->flush();

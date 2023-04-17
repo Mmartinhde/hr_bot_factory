@@ -1,0 +1,107 @@
+body *{
+    margin:0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form{
+    margin:20px;
+}
+
+.form div label{
+    display: block;
+    width: 50%;
+    margin-top: 10px;
+
+}
+
+.form div input {
+    padding: 3px;
+    margin-top: 8px;
+    width: 98%;
+}
+.form div select {
+    padding: 3px;
+    margin-top: 8px;
+    width: 70px;
+}
+
+div button{
+    cursor: pointer;
+    color: #fff;
+    background: #5597ff;
+    border: none;    
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 9px;  
+}
+
+/* login */
+.box-form{
+    padding: 20px;
+    background-color: #f9f9f9f9;
+    border-radius: 4px;
+    margin-top: 24px;
+}
+.form-login{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.alert {
+    color: red;
+    font-size: 16px;
+    margin-bottom: 14px;
+}
+
+.button-logout{
+    display: flex;
+    justify-content: flex-end;
+}
+.button-logout a {
+    cursor: pointer;
+    color: rgb(163, 163, 163);
+    text-decoration: none;
+    margin-left: 2px;
+}
+
+/* */
+.box{
+    margin: 20px;
+}
+.button-add{
+    float: right;
+    background-color: #11b311db;
+}  
+
+.box-table{
+    margin-top: 5em;
+}
+
+.button-edit{
+    background-color: #b59903;
+    margin-top: 0;
+}
+.button-delete{
+    background-color: #f03030;
+    margin-top: 0;
+}
+
+/* table */
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+  
+th {
+    background-color: #4c8aaf;
+    color: white;
+}
+  
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
