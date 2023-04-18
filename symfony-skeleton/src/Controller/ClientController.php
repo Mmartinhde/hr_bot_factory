@@ -8,6 +8,7 @@ use App\Form\UserType;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -124,33 +125,50 @@ class ClientController extends AbstractController
     }
 
 
+    // Users filter    
 
-    // // check if user save in database:
-    // /**
-    //  * @Route("/clients/add-user", name="add_user")
-    //  */
-    // public function addNewUser(EntityManagerInterface $doctrine)
-    // {
-    //     $client= $this->getUser(); //get id conected client
-    //     //dump($client);exit();
-    //     $user = new User();
+    /**
+     * @Route("clients/users_list/filter", name="users_filter")
+     */
+    public function filterUsers(Request $request)
+    {
+        $client = $this->getUser()->getId();
+        $userSearch = $request->query->get('userSearch',null);
+        //dump($userSearch);exit();
 
-    //     $user->setName('Nombre Usuario1');
-    //     $user->setLastName('Apellidos');
-    //     $user->setTown('Town');
-    //     $user->setCategory('X');
-    //     $user->setAge(20);
-    //     $user->setActive(0);
-    //     $user->setDateCreation(new DateTime('now'));
-    //     $user->setDateUpdate(new DateTime('now'));
-    //     $user->setClient($client);
+        $users =  $this->getDoctrine()->getRepository(User::class)->getUsersByFilter($userSearch, $client);
+         //dump($users);exit();
+            return $this->render("users/userslist.html.twig",
+            ['user' => $users]);
+    }
 
-    //     $doctrine->persist($user);
-    //     $doctrine->flush();
 
-    //     return $this->render('users/userslist.html.twig');
-    // }
 
-    
+            // // check if user save in database:
+            // /**
+            //  * @Route("/clients/add-user", name="add_user")
+            //  */
+            // public function addNewUser(EntityManagerInterface $doctrine)
+            // {
+            //     $client= $this->getUser(); //get id conected client
+            //     //dump($client);exit();
+            //     $user = new User();
+
+            //     $user->setName('Nombre Usuario1');
+            //     $user->setLastName('Apellidos');
+            //     $user->setTown('Town');
+            //     $user->setCategory('X');
+            //     $user->setAge(20);
+            //     $user->setActive(0);
+            //     $user->setDateCreation(new DateTime('now'));
+            //     $user->setDateUpdate(new DateTime('now'));
+            //     $user->setClient($client);
+
+            //     $doctrine->persist($user);
+            //     $doctrine->flush();
+
+            //     return $this->render('users/userslist.html.twig');
+            // }
+
 
 }

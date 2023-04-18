@@ -7,6 +7,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use DoctrineExtensions\Query\Mysql\DateFormat;
+
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -85,4 +87,31 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+   public function getUsersByFilter($userSearch = null)
+   {
+        $query = $this->createQueryBuilder('u')
+                //->innerJoin('u.client', 'c')
+                //->where('u.client = c.id')
+                ->where('u.name LIKE :userSearch')
+                ->orWhere('u.lastName LIKE :userSearch')
+                ->orWhere('u.town LIKE :userSearch')
+                ->orWhere('u.category LIKE :userSearch')
+                ->orWhere('u.age LIKE :userSearch')
+                ->orWhere("DATE_FORMAT(u.dateCreation, '%d/%m/%Y') LIKE :userSearch")
+                ->orWhere("DATE_FORMAT(u.dateUpdate, '%d/%m/%Y') LIKE :userSearch")
+                ->setParameter('userSearch', '%'.$userSearch.'%');
+
+                if ($userSearch && $userSearch == 'No') {
+                   $query->andWhere('u.active = false');
+                } else if ($userSearch && $userSearch == 'Sí') {
+                   $query->andWhere('u.active = true');
+                }
+       // dump($qb);exit();
+
+        return $query->getQuery()->getResult();
+
+    }
+
 }
